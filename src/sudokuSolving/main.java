@@ -1,6 +1,8 @@
 package sudokuSolving;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import java.util.List;
 import java.util.Map;
@@ -67,10 +69,36 @@ public class main {
 		System.out.println(peers);
 
 	}
+	
+	//List<Iterator<String>,Iterator<String>> 
+	public void grid_values(List<String> grid, String digits, List<String> squares)
+	{
+		String secondCheck = "0.";
+		List<String> chars = new ArrayList<String>();
+		for (String c : grid)
+		{
+			if(digits.contains(c) || secondCheck.contains(c))
+			{
+				chars.add(c);
+			}
+		}
+		
+		assert chars.size() == 81;
+		/*
+		//List<Pair<List<String>, List<String>>> = new ArrayList<Pair<List<String>, List<String>>>();
+		Map<List<String>,List<String>> rmap = new HashMap<List<String>,List<String>>();
+		rmap.put(squares, chars);
+		*/
+		Iterator<String> i1 = chars.listIterator();
+		Iterator<String> i2 = squares.listIterator();
+		//List<Iterator<String>,Iterator<String>> rvalue = new ArrayList<Iterator<String>,Iterator<String>>();
+		
+	}
 
+	/*
 	public Map<String,List<String>> parse_grid(Map<String,List<String>> grid, List<String> squares, String digits) 
 	{
-		Map<String, String> values = new HashMap<String, List<String>>();
+		Map<String, String> values = new HashMap<String, String>();
 		for(String s : squares)
 		{
 			values.put(s, digits);
@@ -78,6 +106,7 @@ public class main {
 		
 
 	}
+	*/
 	
 	
 	
@@ -96,4 +125,32 @@ public class main {
 		return value;
 	}
 
+}
+
+class PairList <T> 
+{
+	private Queue<T> list1 = new LinkedList<T>();
+	private Queue<T> list2 = new LinkedList<T>();
+	
+	public PairList ()
+	{
+		return;
+	}
+
+	public void push (T e1, T e2)
+	{
+		list1.offer(e1);
+		list2.offer(e2);
+	}
+	
+	public List<T> pop()
+	{
+		List<T> rv = new ArrayList<T>();
+		rv.add(list1.poll());
+		rv.add(list1.poll());
+
+		return rv;
+	}
+
+	
 }
